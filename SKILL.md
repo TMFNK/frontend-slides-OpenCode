@@ -1,6 +1,8 @@
 ---
 name: frontend-slides
 description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a talk/pitch. Helps non-designers discover their aesthetic through visual exploration rather than abstract choices.
+license: MIT
+compatibility: opencode
 ---
 
 # Frontend Slides
@@ -85,7 +87,7 @@ When enhancing existing presentations, viewport fitting is the biggest risk:
 
 ## Phase 1: Content Discovery (New Presentations)
 
-**Ask ALL questions in a single AskUserQuestion call** so the user fills everything out at once:
+**Ask ALL questions in a single `question` tool call** so the user fills everything out at once:
 
 **Question 1 — Purpose** (header: "Purpose"):
 What is this presentation for? Options: Pitch deck / Teaching-Tutorial / Conference talk / Internal presentation
@@ -111,10 +113,10 @@ If user selected "No images" → skip to Phase 2.
 
 If user provides an image folder:
 1. **Scan** — List all image files (.png, .jpg, .svg, .webp, etc.)
-2. **View each image** — Use the Read tool (Claude is multimodal)
+2. **View each image** — Use OpenCode's `view` tool if it can render images; if not, ask the user to describe the image or provide captions
 3. **Evaluate** — For each: what it shows, USABLE or NOT USABLE (with reason), what concept it represents, dominant colors
 4. **Co-design the outline** — Curated images inform slide structure alongside text. This is NOT "plan slides then add images" — design around both from the start (e.g., 3 screenshots → 3 feature slides, 1 logo → title/closing slide)
-5. **Confirm via AskUserQuestion** (header: "Outline"): "Does this slide outline and image selection look right?" Options: Looks good / Adjust images / Adjust outline
+5. **Confirm via `question` tool** (header: "Outline"): "Does this slide outline and image selection look right?" Options: Looks good / Adjust images / Adjust outline
 
 **Logo in previews:** If a usable logo was identified, embed it (base64) into each style preview in Phase 2 — the user sees their brand styled three different ways.
 
@@ -130,7 +132,7 @@ Ask how they want to choose (header: "Style"):
 - "Show me options" (recommended) — Generate 3 previews based on mood
 - "I know what I want" — Pick from preset list directly
 
-**If direct selection:** Show preset picker and skip to Phase 3. Available presets are defined in [STYLE_PRESETS.md](STYLE_PRESETS.md).
+**If direct selection:** Show preset picker and skip to Phase 3. Available presets are defined in `STYLE_PRESETS.md`.
 
 ### Step 2.1: Mood Selection (Guided Discovery)
 
@@ -143,7 +145,7 @@ What feeling should the audience have? Options:
 
 ### Step 2.2: Generate 3 Style Previews
 
-Based on mood, generate 3 distinct single-slide HTML previews showing typography, colors, animation, and overall aesthetic. Read [STYLE_PRESETS.md](STYLE_PRESETS.md) for available presets and their specifications.
+Based on mood, generate 3 distinct single-slide HTML previews showing typography, colors, animation, and overall aesthetic. Read `STYLE_PRESETS.md` for available presets and their specifications.
 
 | Mood | Suggested Presets |
 |------|-------------------|
@@ -152,9 +154,9 @@ Based on mood, generate 3 distinct single-slide HTML previews showing typography
 | Calm/Focused | Notebook Tabs, Paper & Ink, Swiss Modern |
 | Inspired/Moved | Dark Botanical, Vintage Editorial, Pastel Geometry |
 
-Save previews to `.claude-design/slide-previews/` (style-a.html, style-b.html, style-c.html). Each should be self-contained, ~50-100 lines, showing one animated title slide.
+Save previews to `.opencode/slide-previews/` (style-a.html, style-b.html, style-c.html). Each should be self-contained, ~50-100 lines, showing one animated title slide.
 
-Open each preview automatically for the user.
+Open each preview automatically for the user using the `bash` tool with the OS-appropriate opener (`open` on macOS, `xdg-open` on Linux, `start` on Windows).
 
 ### Step 2.3: User Picks
 
@@ -172,9 +174,9 @@ Generate the full presentation using content from Phase 1 (text, or text + curat
 If images were provided, the slide outline already incorporates them from Step 1.2. If not, CSS-generated visuals (gradients, shapes, patterns) provide visual interest — this is a fully supported first-class path.
 
 **Before generating, read these supporting files:**
-- [html-template.md](html-template.md) — HTML architecture and JS features
-- [viewport-base.css](viewport-base.css) — Mandatory CSS (include in full)
-- [animation-patterns.md](animation-patterns.md) — Animation reference for the chosen feeling
+- `html-template.md` — HTML architecture and JS features
+- `viewport-base.css` — Mandatory CSS (include in full)
+- `animation-patterns.md` — Animation reference for the chosen feeling
 
 **Key requirements:**
 - Single self-contained HTML file, all CSS/JS inline
@@ -198,8 +200,8 @@ When converting PowerPoint files:
 
 ## Phase 5: Delivery
 
-1. **Clean up** — Delete `.claude-design/slide-previews/` if it exists
-2. **Open** — Use `open [filename].html` to launch in browser
+1. **Clean up** — Delete `.opencode/slide-previews/` if it exists
+2. **Open** — Use the `bash` tool with the OS-appropriate opener (`open` on macOS, `xdg-open` on Linux, `start` on Windows) to launch the HTML file
 3. **Summarize** — Tell the user:
    - File location, style name, slide count
    - Navigation: Arrow keys, Space, scroll/swipe, click nav dots
@@ -212,8 +214,8 @@ When converting PowerPoint files:
 
 | File | Purpose | When to Read |
 |------|---------|-------------|
-| [STYLE_PRESETS.md](STYLE_PRESETS.md) | 12 curated visual presets with colors, fonts, and signature elements | Phase 2 (style selection) |
-| [viewport-base.css](viewport-base.css) | Mandatory responsive CSS — copy into every presentation | Phase 3 (generation) |
-| [html-template.md](html-template.md) | HTML structure, JS features, code quality standards | Phase 3 (generation) |
-| [animation-patterns.md](animation-patterns.md) | CSS/JS animation snippets and effect-to-feeling guide | Phase 3 (generation) |
-| [scripts/extract-pptx.py](scripts/extract-pptx.py) | Python script for PPT content extraction | Phase 4 (conversion) |
+| `STYLE_PRESETS.md` | 12 curated visual presets with colors, fonts, and signature elements | Phase 2 (style selection) |
+| `viewport-base.css` | Mandatory responsive CSS — copy into every presentation | Phase 3 (generation) |
+| `html-template.md` | HTML structure, JS features, code quality standards | Phase 3 (generation) |
+| `animation-patterns.md` | CSS/JS animation snippets and effect-to-feeling guide | Phase 3 (generation) |
+| `scripts/extract-pptx.py` | Python script for PPT content extraction | Phase 4 (conversion) |
