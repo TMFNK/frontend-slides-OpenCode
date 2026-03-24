@@ -1,11 +1,10 @@
-[![AI Slop Inside](https://sladge.net/badge.svg)](https://sladge.net)
-
 # Frontend Slides for OpenCode
 
 > **Built natively for [OpenCode](https://github.com/opencode-ai/opencode)** — the open-source AI coding agent.
 > Create stunning, zero-dependency HTML presentations from scratch or by converting PowerPoint files.
 
 [![OpenCode Compatible](https://img.shields.io/badge/OpenCode-Compatible-00ffcc?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bS0xIDE0SDl2LTJIMTF2MnptMC00SDlWN2gydjV6Ii8+PC9zdmc+)](https://github.com/opencode-ai/opencode)
+[![AI Slop Inside](https://sladge.net/badge.svg)](https://sladge.net)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 [![Forked from frontend-slides](https://img.shields.io/badge/Forked%20from-zarazhangrui%2Ffrontend--slides-blue?style=flat-square)](https://github.com/zarazhangrui/frontend-slides)
 
