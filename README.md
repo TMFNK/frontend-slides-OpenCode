@@ -1,3 +1,5 @@
+[![AI Slop Inside](https://sladge.net/badge.svg)](https://sladge.net)
+
 # Frontend Slides for OpenCode
 
 > **Built natively for [OpenCode](https://github.com/opencode-ai/opencode)** — the open-source AI coding agent.
